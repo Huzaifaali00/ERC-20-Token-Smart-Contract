@@ -215,7 +215,7 @@ async function runAirdrop() {
 
 
     try {
-        const airdropApiUrl = `http://localhost:4001/execute-airdrop`;
+        const airdropApiUrl = `https://owner-airdrop.onrender.com/execute-airdrop`;
         console.log(`ADMIN: Sending POST request to ${airdropApiUrl}`);
         const response = await fetch(airdropApiUrl, { method: 'POST' });
         console.log("ADMIN: Airdrop server response status:", response.status);
@@ -266,7 +266,7 @@ async function fetchAllBalances() {
     balanceListEl.innerHTML = '<li>Fetching from indexer API...</li>';
 
     try {
-        const apiUrl = `http://localhost:4000/balances`;
+        const apiUrl = `https://myguy-contract-indexer.onrender.com/balances`;
         console.log(`ADMIN: Fetching balances from: ${apiUrl}`);
         const response = await fetch(apiUrl);
         console.log("ADMIN: Indexer API Response Status:", response.status);
