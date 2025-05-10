@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYGUY - Admin Panel</title>
+    <link rel="stylesheet" href="adminstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="background-animation"></div>
+    <div id="block-background-container" class="hidden">
+        <div class="floating-block block1"></div>
+        <div class="floating-block block2"></div>
+        <div class="floating-block block3"></div>
+        <div class="floating-block block4"></div>
+        <div class="floating-block block5"></div>
+        <div class="floating-block block6"></div>
+        <div class="floating-block block7"></div>
+        <div class="floating-block block8"></div>
+    </div>
+
+    <div id="notification-container">
+    </div>
+
+    <div id="introAnimationContainer">
+        <div class="logo-container">
+            <div class="cube">
+                <div class="face front"><span>MG</span></div>
+                <div class="face back"><span>MG</span></div>
+                <div class="face right"><span>MG</span></div>
+                <div class="face left"><span>MG</span></div>
+                <div class="face top"><span>MG</span></div>
+                <div class="face bottom"><span>MG</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="adminConnectContainer" class="connect-page-container hidden">
+            <div class="connect-content-overlay">
+                <h1 class="connect-heading">MG Admin</h1>
+                <div class="connect-button-wrapper">
+                    <button id="adminConnectButton" class="btn btn-primary glow-on-hover">
+                        <svg fill="#ffffff" height="1em" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 112.5V422.3c0 18 10.1 35 27 41.3c88.1 33.1 189.4 28.8 276.5 10.6c3 .7 6.1 1.2 9.2 1.7c33.1 5.2 68.1 5.2 101.2 0c3.1-.5 6.2-1 9.2-1.7c87.1 18.2 188.4 22.5 276.5-10.6c17-6.3 27-23.4 27-41.3V112.5c0-18-10.1-35-27-41.3C460.1 38.1 358.9 42.4 271.7 60.6c-3 .7-6.1 1.2-9.2 1.7c-33.1 5.2-68.1 5.2-101.2 0c-3.1-.5-6.2-1-9.2-1.7C117.1 42.4 15.9 38.1-72.3 71.1C-89.2 77.4-99.4 94.4-99.4 112.5zM192 304a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm112 16a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96-16a32 32 0 1 0 0-64 32 32 0 1 0 0 64z">
+                            </path>
+                        </svg> Connect Wallet
+                    </button>
+                    <div id="adminConnectStatus" class="status-box info hidden">
+                        <p class="status-message">Connecting...</p>
+                    </div>
+                </div>
+                <p id="adminTagline" class="tagline">Warning: For Admin Use Only</p>
+            </div>
+        </div>
+
+        <div id="adminUIContainer" style="display: none;">
+            <header id="adminHeader" class="hidden">
+                <div class="header-left">
+                    <div class="header-logo">MG</div>
+                    <h1 class="header-title">Admin Panel</h1>
+                </div>
+                <div class="header-right">
+                    <div id="adminWalletInfo" class="wallet-info">
+                        <p>Owner: <span id="adminWalletAddress"></span></p>
+                        <p>Network: <span id="adminNetworkName"></span></p>
+                    </div>
+                </div>
+            </header>
+            <div id="airdropProgressModal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <h3 id="airdropModalTitle">Airdrop Results</h3>
+                    <div id="airdropModalBody" class="event-log-box" style="max-height: 300px; overflow-y: auto;">
+                    </div>
+                    <button id="closeAirdropModalButton" class="btn btn-primary"
+                        style="margin-top: 15px;">Close</button>
+                </div>
+            </div>
+            <main id="admin-interface" class="hidden">
+                <div class="grid-row">
+                    <section class="card action-card fade-in" style="--animation-order: 1;">
+                        <h2 class="card-title">Admin Actions</h2>
+                        <div class="action-form">
+                            <h3>Deposit ETH to MYGUY Contract</h3>
+                            <p class="info-text"> Target MYGUY Address: <code id="myguyAddressDisplay">...</code> </p>
+                            <div class="form-group"> <label for="depositAmountEth">Amount (ETH):</label> <input
+                                    type="number" step="any" id="depositAmountEth" placeholder="0.1"> </div>
+                            <button id="depositButton" class="btn btn-primary glow-on-hover"> <span
+                                    class="btn-text">Deposit ETH</span> <span class="spinner hidden"></span> </button>
+                            <p class="info-text">MYGUY ETH Balance: <span id="myguyEthBalance">?</span> ETH</p>
+                        </div>
+                        <div class="action-form">
+                            <h3>Airdrop To MG Users</h3>
+                            <button id="airdropButton" class="btn btn-secondary glow-on-hover"> <span
+                                    class="btn-text">Execute Airdrop</span> <span class="spinner hidden"></span>
+                            </button>
+                        </div>
+                    </section>
+                    <section class="card info-card fade-in" style="--animation-order: 2;">
+                        <h2 class="card-title">Token Holders & Balances</h2>
+                        <p class="info-text" style="margin-bottom: 15px;"> MYGUY Contract MG Holdings: <strong
+                                id="adminContractMgBalance" class="data-value">Loading...</strong> </p>
+                        <p class="info-text"> Holder data below fetched from off-chain indexer. </p>
+                        <div id="balancesDisplayArea" class="event-log-box balance-list-box" style="margin-top: 10px;">
+                            <h3 class="log-title">User Balances (Indexer Data)</h3>
+                            <ul id="balanceList">
+                                <li>Loading balances from indexer...</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <div class="grid-row">
+                    <section class="card status-log full-width fade-in" style="--animation-order: 1;">
+                        <h2 class="card-title">Admin Activity Feed</h2>
+                        <div id="adminMainStatus" class="status-box info">
+                            <p class="status-message">Admin panel loaded.</p>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
